@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <h2>Press R, P or S to make a choice.</h2>
+
+    <div>User Choice: </div>
+    <div class='user_choice'></div>
+    <div>Computer Choice: </div>
+    <div class='comp_choice'></div>
+    <div class = 'status'></div>
+    <div>Wins: </div>
+    <div class='win'></div>
+    <div>Losses: </div>
+    <div class='loss'></div>
+    <div>Draws: </div>
+    <div class='draw'></div>
+
+    <script>
+        let options = ["r", "p", "s"]
+        let compChoice = options[Math.floor(Math.random()*options.length)]
+
+        let wins = 0
+        let losses = 0
+        let draws = 0
+
+
+        document.onkeyup = function(e) {
+            let userChoice = e.key
+
+            if(userChoice == "r" && compChoice == "s" || userChoice == "p" && compChoice == "r" || userChoice == "s" && compChoice == "p"){
+                document.querySelector('.user_choice').innerHTML =userChoice
+                wins++
+                document.querySelector('.status').innerHTML = "<h3>You're winner!<h3>"
+                document.querySelector('.win').innerHTML = wins
+                document.querySelector('.comp_choice').innerHTML = compChoice
+                compChoice = options[Math.floor(Math.random()*options.length)]
+            } else if (compChoice == "r" && userChoice == "s" || compChoice == "p" && userChoice == "r" || compChoice == "s" && userChoice == "p"){
+                document.querySelector('.user_choice').innerHTML =userChoice
+                losses++
+                document.querySelector('.status').innerHTML = "<h3>You're loser! Try again.</h3>"
+                document.querySelector('.loss').innerHTML =losses
+                document.querySelector('.comp_choice').innerHTML = compChoice
+                compChoice = options[Math.floor(Math.random()*options.length)]
+            } else if (userChoice == compChoice){
+                document.querySelector('.user_choice').innerHTML =userChoice
+                draws++
+                document.querySelector('.status').innerHTML = "<h3>Draws! Try again.<h3>"
+                document.querySelector('.draw').innerHTML = draws
+                document.querySelector('.comp_choice').innerHTML = compChoice
+                compChoice = options[Math.floor(Math.random()*options.length)]
+            } else {
+                alert("Wrong button! Press R, P or S to play.")
+            }
+        }
+
+
+    
+    
+    </script>
+
+
+    
+</body>
+</html>
